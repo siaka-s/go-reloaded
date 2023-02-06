@@ -28,11 +28,28 @@ func convertirbin(binaire string) int64 {
 	}
 	return n
 }
+
+// convertir le mot en majuscule
 func convertirUp(upper string) string {
 
 	upper = strings.ToUpper(upper)
 
 	return upper
+}
+
+// convertir le mot en minuscule
+func convertirLow(lower string) string {
+
+	lower = strings.ToLower(lower)
+
+	return lower
+}
+
+func convertirCap(cap string) string {
+
+	cap = strings.Title(cap)
+
+	return cap
 }
 
 // Convertion du texte en tableau
@@ -72,26 +89,38 @@ func traitement(phrase string) string {
 
 			a := i - 1
 
-			dec := convertirbin(mots[a])
+			bin := convertirbin(mots[a])
 
-			decf := strconv.FormatInt(dec, 10)
+			binf := strconv.FormatInt(bin, 10)
 
-			mots[a] = decf
+			mots[a] = binf
 
 		case "(up)":
 			mots[i] = ""
 
 			a := i - 1
 
-			dec := convertirUp(mots[a])
+			up := convertirUp(mots[a])
 
-			mots[a] = dec
+			mots[a] = up
 		case "(low)":
+			mots[i] = ""
 
+			a := i - 1
+
+			low := convertirLow(mots[a])
+
+			mots[a] = low
 		case "(cap)":
+			mots[i] = ""
 
-		default:
-			fmt.Println("Aucune modification à éffectuer")
+			a := i - 1
+
+			cap := convertirCap(mots[a])
+
+			mots[a] = cap
+
+			break
 		}
 	}
 	// convertir le tableau en chaine de caractère avec un espace de séparation
