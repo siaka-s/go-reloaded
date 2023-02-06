@@ -28,9 +28,14 @@ func convertirbin(binaire string) int64 {
 	}
 	return n
 }
+func convertirUp(upper string) string {
 
-// stockage de la phrase dans un tableau et execution de cas
+	upper = strings.ToUpper(upper)
 
+	return upper
+}
+
+// Convertion du texte en tableau
 func wordTabExe(sample string) []byte {
 
 	// récuperation du contenu du filchier
@@ -74,7 +79,13 @@ func traitement(phrase string) string {
 			mots[a] = decf
 
 		case "(up)":
+			mots[i] = ""
 
+			a := i - 1
+
+			dec := convertirUp(mots[a])
+
+			mots[a] = dec
 		case "(low)":
 
 		case "(cap)":
@@ -91,7 +102,7 @@ func traitement(phrase string) string {
 	return result
 }
 
-// Migration du contenu modifier dans un nouveau fichier
+// Migration du contenu modifier dans le fichier affichage des modification
 func remplacerContenuFichier(nvFichier string, newContenu string) error {
 	return ioutil.WriteFile(nvFichier, []byte(newContenu), 0666)
 }
